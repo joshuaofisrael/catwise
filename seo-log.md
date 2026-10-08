@@ -19,8 +19,8 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - Open: Cloudflare beacon (token lacks RUM permission), GSC verification token, FormSubmit activation.
 
 ## 2026-10-08 rebrand to MeowWise
-- Reason: the CatWise name failed the trademark check (Catwise cat care app; Penguin book "CatWise"). Planned domain: meowwise.com (no CNAME yet).
-- Repo renamed to joshuaofisrael/meowwise; base path now /meowwise/. Old /catwise/ URLs return 404 (GitHub does not redirect project Pages after a rename).
+- Reason: the previous name failed the trademark check (an existing cat care app and a published book use it). Planned domain: meowwise.com (no CNAME yet).
+- Repo renamed to joshuaofisrael/meowwise; base path now /meowwise/. Old project path URLs return 404 (GitHub does not redirect project Pages after a rename).
 - Live check: all 20 sitemap URLs plus robots.txt, sitemap.xml, llms.txt, key file, og.png, favicon, style.css return 200; 404 page works.
 - IndexNow (api.indexnow.org): HTTP 202 for 21 URLs at the new location.
 - og.png regenerated with the MeowWise name.

@@ -23,7 +23,11 @@ SRC = os.path.join(ROOT, "_src")
 NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"), ("health.html", "Health"),
        ("behavior.html", "Behavior"), ("nutrition.html", "Nutrition"), ("kittens.html", "Kittens"),
        ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Plants"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
-       ("blog/", "Blog"), ("contact.html", "Contact")]
+       ("blog/", "Blog"), ("teachers/", "Teachers"), ("contact.html", "Contact")]
+
+# Pages that get the "Cite this page" box and a visible last reviewed date
+CITABLE = ("article", "blog", "teacher", "research")
+SECTIONS = {"blog/": ("Blog", "blog/index.html"), "teachers/": ("For teachers", "teachers/index.html")}
 
 LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">MeowWise logo</title>'
         '<path d="M12 54V22L8 6l16 10h16l16-10-4 16v32z" fill="#8e5cc8"/><path d="M13 19l-1-8 7 5zM51 19l1-8-7 5z" fill="#f8cfe2"/>'
@@ -54,6 +58,9 @@ def parse(path):
         if k == "source":
             label, url = [x.strip() for x in v.rsplit("|", 1)]
             meta["source"].append((label, url))
+        elif k == "ngss":
+            code, url = [x.strip() for x in v.split("|", 1)]
+            meta.setdefault("ngss", []).append((code, url))
         elif k == "related":
             meta["related"] = [x.strip() for x in v.split(",") if x.strip()]
         else:
@@ -65,6 +72,7 @@ def parse(path):
     meta.setdefault("published", TODAY)
     meta.setdefault("updated", meta["published"])
     meta.setdefault("label", meta.get("h1", meta["title"].split(" | ")[0]))
+    meta.setdefault("reviewed", meta["updated"])
     return meta
 
 
@@ -110,6 +118,33 @@ def human_date(d):
     return datetime.date.fromisoformat(d).strftime("%-d %B %Y")
 
 
+def apa_date(d):
+    return datetime.date.fromisoformat(d).strftime("%Y, %B %-d")
+
+
+def mla_date(d):
+    mon = {1: "Jan.", 2: "Feb.", 3: "Mar.", 4: "Apr.", 5: "May", 6: "June", 7: "July", 8: "Aug.", 9: "Sept.", 10: "Oct.", 11: "Nov.", 12: "Dec."}[d.month]
+    return f"{d.day} {mon} {d.year}"
+
+
+def cite_box(p, url):
+    t = p.get("h1", p["title"].split(" | ")[0])
+    d = datetime.date.fromisoformat(p["reviewed"])
+    bare = url.replace("https://", "")
+    tq = html.escape(t if t.endswith(("?", "!", ".")) else t + ".")
+    tt = html.escape(t)
+    apa = f"{SITE_NAME}. ({apa_date(p['reviewed'])}). <i>{tt}</i>{'' if t.endswith(('?', '!', '.')) else '.'} {url}"
+    mla = f"\u201c{tq}\u201d <i>{SITE_NAME}</i>, {LEGAL}, {mla_date(d)}, {bare}."
+    chi = f"{SITE_NAME}. \u201c{tq}\u201d {LEGAL}. Last modified {d.strftime('%B %-d, %Y')}. {url}."
+    return ('<section class="card cite" id="cite" aria-labelledby="cite-h"><h2 id="cite-h">Cite this page</h2>'
+            '<p class="sci">Students and teachers are welcome to cite this page. Add your access date if your teacher or style guide asks for one.</p>'
+            f'<p><b>APA (7th ed.)</b><br>{apa}</p><p><b>MLA (9th ed.)</b><br>{mla}</p><p><b>Chicago (bibliography)</b><br>{chi}</p></section>')
+
+
+def games_live():
+    return os.path.exists(os.path.join(ROOT, "games", "index.html"))
+
+
 def render(p, pages_by_slug, blog_posts):
     slug = p["slug"]
     prefix = "../" * slug.count("/")
@@ -126,6 +161,15 @@ def render(p, pages_by_slug, blog_posts):
             for b in blog_posts)
         body = body.replace("{{BLOG_LIST}}", f'<ul class="postlist">{items}</ul>')
 
+    if "{{GAMES}}" in body:
+        if games_live():
+            g = ('<p>Our free <a href="/games/">MeowWise cat games</a> run in the browser with no sign up, no accounts and no data collected. '
+                 'Use them as a warm up, a station activity or a reward after a worksheet, then ask students what real cat fact each game is based on.</p>')
+        else:
+            g = ('<p><b>Coming soon:</b> a small set of free, original cat games that run in the browser with no sign up and no data collected. '
+                 'They will appear on this page as classroom activity ideas when they launch.</p>')
+        body = body.replace("{{GAMES}}", g)
+
     lds = []
     if typ == "home":
         lds.append({"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": SITE_URL,
@@ -133,12 +177,13 @@ def render(p, pages_by_slug, blog_posts):
         lds.append(dict({"@context": "https://schema.org"}, **ORG))
     crumbs = []
     if typ != "home" and not noindex:
-        crumbs = [("Home", SITE_URL)]
-        if slug.startswith("blog/") and slug != "blog/index.html":
-            crumbs.append(("Blog", url_of("blog/index.html")))
-        crumbs.append((p["label"], url))
+        crumbs = [("Home", SITE_URL, "index.html")]
+        for pre, (nm, idx) in SECTIONS.items():
+            if slug.startswith(pre) and slug != idx:
+                crumbs.append((nm, url_of(idx), pre))
+        crumbs.append((p["label"], url, ""))
         lds.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]})
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u, _) in enumerate(crumbs)]})
     if typ in ("article", "blog"):
         lds.append({"@context": "https://schema.org", "@type": "BlogPosting" if typ == "blog" else "Article",
                     "headline": p.get("h1", title)[:110], "description": desc,
@@ -148,6 +193,33 @@ def render(p, pages_by_slug, blog_posts):
                     "citation": [u for _, u in p["source"]] or None})
         if lds[-1]["citation"] is None:
             del lds[-1]["citation"]
+    if typ == "teacher":
+        lr = {"@context": "https://schema.org", "@type": "LearningResource", "name": p.get("h1", title), "description": desc, "url": url,
+              "inLanguage": "en", "isAccessibleForFree": True, "learningResourceType": p.get("resource_type", "Lesson ideas"),
+              "educationalLevel": [x.strip() for x in p.get("level", "").split(",") if x.strip()],
+              "audience": {"@type": "EducationalAudience", "educationalRole": "teacher"},
+              "datePublished": p["published"], "dateModified": p["reviewed"],
+              "publisher": dict({"@context": "https://schema.org"}, **ORG), "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL},
+              "about": {"@type": "Thing", "name": "Domestic cat", "sameAs": "https://www.wikidata.org/wiki/Q146"}}
+        if p.get("ngss"):
+            lr["educationalAlignment"] = [{"@type": "AlignmentObject", "alignmentType": "teaches",
+                                           "educationalFramework": "Next Generation Science Standards", "targetName": c, "targetUrl": u}
+                                          for c, u in p["ngss"]]
+        if p["source"]:
+            lr["citation"] = [u for _, u in p["source"]]
+        lds.append(lr)
+    if typ == "research":
+        items = re.findall(r'<li class="paper"[^>]*data-doi="([^"]+)"[^>]*>(.*?)</li>', body, re.S)
+        parts = []
+        for doi, inner in items:
+            m = re.search(r'<cite>(.*?)</cite>', inner, re.S)
+            parts.append({"@type": "ScholarlyArticle", "name": strip_tags(m.group(1)) if m else doi, "sameAs": "https://doi.org/" + doi,
+                          "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": doi}})
+        lds.append({"@context": "https://schema.org", "@type": "CollectionPage", "name": p.get("h1", title), "description": desc, "url": url,
+                    "dateModified": p["reviewed"], "publisher": dict({"@context": "https://schema.org"}, **ORG),
+                    "audience": {"@type": "Audience", "audienceType": "students, teachers and researchers"},
+                    "mainEntity": {"@type": "ItemList", "numberOfItems": len(parts),
+                                   "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": x} for i, x in enumerate(parts)]}})
     faqs = faq_items(body)
     if faqs:
         lds.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -190,12 +262,16 @@ def render(p, pages_by_slug, blog_posts):
     main = ['<main id="main">']
     if crumbs:
         main.append('<nav class="crumbs" aria-label="Breadcrumb">' + " › ".join(
-            f'<a href="{link("index.html") if n == "Home" else ("/blog/" if n == "Blog" else "")}">{html.escape(n)}</a>' if i < len(crumbs) - 1
-            else f'<span aria-current="page">{html.escape(n)}</span>' for i, (n, u) in enumerate(crumbs)) + "</nav>")
+            f'<a href="{link(t)}">{html.escape(n)}</a>' if i < len(crumbs) - 1
+            else f'<span aria-current="page">{html.escape(n)}</span>' for i, (n, u, t) in enumerate(crumbs)) + "</nav>")
     if p.get("h1") and typ != "home":
         main.append(f'<h1>{html.escape(p["h1"])}</h1>')
-    if typ in ("article", "blog"):
-        main.append(f'<p class="meta">By the {SITE_NAME} team · Last updated <time datetime="{p["updated"]}">{human_date(p["updated"])}</time></p>')
+    if typ in CITABLE:
+        main.append(f'<p class="meta">By the {SITE_NAME} team · Published <time datetime="{p["published"]}">{human_date(p["published"])}</time>'
+                    f' · Last reviewed <time datetime="{p["reviewed"]}">{human_date(p["reviewed"])}</time></p>')
+    if p.get("printable"):
+        main.append('<p class="noprint"><button class="btn" type="button" onclick="window.print()">Print this page</button> '
+                    '<span class="sci">Free to print for classroom use. No sign up, no ads.</span></p>')
     main.append(body)
     if p["related"]:
         lis = "".join(f'<li><a href="/{r}">{html.escape(pages_by_slug[r]["label"])}</a></li>' for r in p["related"])
@@ -203,6 +279,8 @@ def render(p, pages_by_slug, blog_posts):
     if p["source"]:
         lis = "".join(f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(l)}</a></li>' for l, u in p["source"])
         main.append(f'<section class="card sources" id="sources"><h2>Sources</h2><ol>{lis}</ol></section>')
+    if typ in CITABLE:
+        main.append(cite_box(p, url))
     if typ in ("article", "blog"):
         main.append('<p class="note">General education, not veterinary advice. If you are worried about your cat, contact your veterinarian; in an emergency, go to the nearest emergency vet.</p>')
     main.append("</main>")
@@ -211,7 +289,7 @@ def render(p, pages_by_slug, blog_posts):
               f'<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or use our <a href="{link("contact.html")}">contact form</a>.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original. Not a substitute for veterinary care.</p>'
               f'<p class="llc">© 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
-              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a></p></footer>')
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
@@ -251,6 +329,7 @@ def main():
     guides = [p for p in indexable if p["type"] == "article" and not p["slug"].startswith("blog/") and p.get("group") != "tool"]
     tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
+    edu = [p for p in indexable if p["type"] in ("teacher", "research")]
     info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
@@ -261,7 +340,10 @@ def main():
         if p["slug"] == "breeds.html" and breeds_anchor:
             llms.append("  - Breed sections: " + breeds_anchor)
     llms += ["", "## Tools"] + [line(p) + " (searchable table with a stable #anchor per item)" for p in tools]
-    llms += ["", "## Blog"] + [line(p) for p in posts] + ["", "## Optional"] + [line(p) for p in info]
+    llms += ["", "## Blog"] + [line(p) for p in posts]
+    llms += ["", "## For teachers, students and researchers", "Free classroom resources (no sign up, no ads, no data collection) with NGSS alignments, answer keys, a vocabulary list, and a list of peer reviewed papers with DOIs."]
+    llms += [line(p) for p in edu]
+    llms += ["", "## Optional"] + [line(p) for p in info]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
     open(os.path.join(ROOT, f"{INDEXNOW_KEY}.txt"), "w").write(INDEXNOW_KEY)
     open(os.path.join(ROOT, ".nojekyll"), "w").write("")

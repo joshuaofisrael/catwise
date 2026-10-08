@@ -26,6 +26,16 @@ The content is general education, not veterinary advice.
 - [How often should a cat see the vet?](https://meowwise.com/blog/how-often-should-a-cat-see-the-vet.html): Kittens need several visits, adult cats at least once a year, cats aged 10 to 15 every six months and cats over 15 every four months. A schedule by life stage, with sources.
 - [Why do cats slow blink?](https://meowwise.com/blog/why-do-cats-slow-blink.html): A cat's slow blink is a relaxed, positive signal. A 2020 study found cats slow blink back at people and approach strangers who slow blink. How to slow blink at a cat.
 
+## For teachers, students and researchers
+Free classroom resources (no sign up, no ads, no data collection) with NGSS alignments, answer keys, a vocabulary list, and a list of peer reviewed papers with DOIs.
+- [For teachers](https://meowwise.com/teachers/): Free cat printables, worksheets, lesson ideas and a quiz with answer key for K to 12 classrooms, aligned to NGSS life science standards where they fit. No sign up, no ads.
+- [Research](https://meowwise.com/research/): The peer reviewed papers behind MeowWise, for students, teachers and researchers: cat domestication, behavior, senses, nutrition, genetics and veterinary guidelines, each with authors, year, journal and DOI.
+- [Cat adaptations lesson plan](https://meowwise.com/teachers/cat-adaptations-lesson-plan.html): Free cat adaptations lesson plan for grades 3 to 5: whiskers, ears, eyes and taste as structures and senses. Includes a sense, brain, response worksheet and answer key. NGSS 4-LS1-1, 4-LS1-2.
+- [Cat fact sheet for kids](https://meowwise.com/teachers/cat-fact-sheet.html): A free, printable cat fact sheet for kids in grades 2 to 5: where house cats came from, what they eat, whiskers, hearing and kittens. Every fact sourced. Reading check with answer key.
+- [Cat science quiz](https://meowwise.com/teachers/cat-quiz.html): A free 10 question cat science quiz for grades 6 to 12 on domestication, genetics, senses and nutrition. Printable, with an answer key that links every answer to a peer reviewed source.
+- [Cat traits worksheet (3rd grade)](https://meowwise.com/teachers/cat-worksheet-3rd-grade.html): Free printable cat worksheet for 3rd grade. Students compare a mother cat, father cat and kittens to find inherited traits and variation (NGSS 3-LS3-1). Teacher notes and answer key.
+- [Cat science vocabulary](https://meowwise.com/teachers/vocabulary.html): A free printable cat science vocabulary list for grades 3 to 12: adaptation, artificial selection, carnivore, domestication, inherited trait, taurine, vibrissae and more, in plain language.
+
 ## Optional
 - [About](https://meowwise.com/about.html): MeowWise is a brand of Joshua Israel Ventures LLC: an independent cat information site. How our guides are researched, sourced, checked and updated.
 - [Contact](https://meowwise.com/contact.html): Contact the MeowWise team by email or with our contact form: corrections, questions about our cat guides and suggestions for new topics.

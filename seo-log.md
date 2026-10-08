@@ -34,3 +34,17 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - IndexNow (api.indexnow.org, host meowwise.com): HTTP 202 for 21 URLs.
 - FormSubmit: one test from meowwise.com; activation email requested.
 - Next: Search Console (domain property or HTML tag) when Joshua is back.
+
+## 2026-10-08 pastel restyle and LLC legal pages (commit 04d4488)
+- Restyle: pastel pink background #fff5fa, lavender #f1eafb, mint #b8ecd7, plum headings #5b2a86, links #6a2c9e, ink #2b2236. Fredoka 600 headings from Google Fonts (preconnect, display=swap, one weight). Inline SVG paw and yarn doodles. style.css 3166 to 5461 bytes. All text pairs checked at WCAG AA or better (see /workspace/animal-sites/cats/contrast-2026-10-08.txt).
+- Legal: footer "© 2026 Joshua Israel Ventures LLC. All rights reserved. MeowWise is owned and operated by Joshua Israel Ventures LLC." plus Terms, Privacy, Disclaimer, Contact links on every page. New /terms.html and /disclaimer.html; privacy rewritten (LLC is controller); About says MeowWise is a brand of the LLC. JSON-LD Organization is the LLC with MeowWise as Brand; WebSite and Article publisher point to the LLC.
+- Sitemap now 22 pages plus llms.txt. IndexNow: HTTP 200 for 23 URLs (all pages changed by the footer).
+- Deferred to after 19:45 London (box load rules): screenshots at 390x844 and 1280x800, full live crawl, games hub.
+
+## 2026-10-08 education campaign step 1: teachers hub, research page, Cite this page
+- Opportunity: teacher and student searches ("cat worksheet for 3rd grade", "cat adaptations lesson plan", "cat facts for kids printable") plus citation friendly pages that educators, librarians and AI answer engines can recommend.
+- New pages (8): /teachers/ hub (LearningResource, 7 NGSS PEs verified on nextgenscience.org: K-LS1-1, 1-LS1-2, 3-LS3-1, 4-LS1-1, 4-LS1-2, MS-LS4-5, HS-LS3-1), /teachers/cat-fact-sheet.html, /teachers/cat-worksheet-3rd-grade.html, /teachers/cat-adaptations-lesson-plan.html, /teachers/cat-quiz.html, /teachers/vocabulary.html, /research/ (CollectionPage with 19 ScholarlyArticle DOIs, every DOI checked against Europe PMC, Crossref or the publisher).
+- Site wide: "Cite this page" box (APA 7, MLA 9, Chicago) and "Published / Last reviewed" line on every article, blog post, teacher page and the research page. Teachers nav item; footer links For teachers and Research; home tile. Print CSS (black on white, menus and footer extras hidden, answer keys on a new page).
+- llms.txt: new "For teachers, students and researchers" section. Sitemap 29 pages plus llms.txt.
+- Games: hub shows a "coming soon" note; it switches to a /games/ link automatically on the next build once games/index.html exists.
+- Outreach target CSV kept local only (outreach/ is in .gitignore) because the repo is public.

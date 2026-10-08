@@ -25,3 +25,12 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - IndexNow (api.indexnow.org): HTTP 202 for 21 URLs at the new location.
 - og.png regenerated with the MeowWise name.
 - FormSubmit: one test submission sent; activation email requested (pending Joshua's click).
+
+## 2026-10-08 custom domain meowwise.com
+- DNS: four GitHub apex A records plus www CNAME (verified with dig). CNAME file added; Pages custom domain set via API.
+- Certificate: Let's Encrypt, approved for meowwise.com and www.meowwise.com, expires 2027-01-06. Enforce HTTPS on.
+- All canonicals, OG URLs, JSON-LD, sitemap.xml, robots.txt Sitemap line, llms.txt and indexnow.sh now use https://meowwise.com/. 0 github.io strings in site output.
+- Live: all 20 sitemap URLs plus robots.txt, sitemap.xml, llms.txt, key file, og.png return 200 over HTTPS. www and the old github.io path redirect to https://meowwise.com/.
+- IndexNow (api.indexnow.org, host meowwise.com): HTTP 202 for 21 URLs.
+- FormSubmit: one test from meowwise.com; activation email requested.
+- Next: Search Console (domain property or HTML tag) when Joshua is back.

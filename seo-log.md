@@ -48,3 +48,10 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - llms.txt: new "For teachers, students and researchers" section. Sitemap 29 pages plus llms.txt.
 - Games: hub shows a "coming soon" note; it switches to a /games/ link automatically on the next build once games/index.html exists.
 - Outreach target CSV kept local only (outreach/ is in .gitignore) because the repo is public.
+
+## 2026-10-08 daily run: cat communication cluster plus fact article
+- Data: no Search Console or analytics yet (both pending), so no query data to act on. Light run only (weekday 14:00 to 19:45 box load window).
+- Highest EV action: build out the behavior and communication cluster, which already has the slow blink post. New answer first post "Do cats know their names?" (high volume question query; top results are mostly news rewrites of the 2019 study, so a page with the actual study design, numbers, the 2022 follow up and the limits adds value).
+- Internal links: behavior pillar gets a "Do cats know their names?" card, the Saito 2019 source and a related link; slow blink post links to it; /research/ gains Saito 2019 and Takagi 2022 entries and the Saito 2013 entry now lists the post under Used on. Blog index description updated.
+- Article sources (all opened): Saito et al. 2019 Sci Rep 9:5394 (10.1038/s41598-019-40616-4); Takagi et al. 2022 Sci Rep 12:6155 (10.1038/s41598-022-10261-5); Saito and Shinozuka 2013 Anim Cogn 16:685-690 (10.1007/s10071-013-0620-4). Details confirmed on Crossref.
+- Schema: BlogPosting (publisher Joshua Israel Ventures LLC), FAQPage with 4 questions, BreadcrumbList. Sitemap 30 pages plus llms.txt.

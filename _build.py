@@ -8,7 +8,7 @@ then re ping IndexNow (./indexnow.sh) on the new host.
 """
 import html, json, os, re, glob, datetime
 
-SITE_URL = "https://joshuaofisrael.github.io/meowwise/"   # <- the ONE place the base URL lives
+SITE_URL = "https://meowwise.com/"   # <- the ONE place the base URL lives
 SITE_NAME = "MeowWise"
 LEGAL = "Joshua Israel Ventures LLC"
 EMAIL = "joshuaofisrael@gmail.com"
@@ -237,7 +237,7 @@ def main():
     tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
     info = [by_slug[s] for s in ("about.html", "contact.html", "privacy.html") if s in by_slug]
-    breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "")
+    breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
             f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. Operated by {LEGAL}.",
             "", "The content is general education, not veterinary advice.", "", "## Guides"]

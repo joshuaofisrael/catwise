@@ -22,7 +22,7 @@ SRC = os.path.join(ROOT, "_src")
 
 NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"), ("health.html", "Health"),
        ("behavior.html", "Behavior"), ("nutrition.html", "Nutrition"), ("kittens.html", "Kittens"),
-       ("senior-cats.html", "Senior Cats"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
+       ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Checker"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
        ("blog/", "Blog"), ("contact.html", "Contact")]
 
 LOGO = ('<svg role="img" width="34" height="34" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">CatWise logo</title>'
@@ -233,7 +233,8 @@ def main():
 
     def line(p):
         return f"- [{p['label']}]({url_of(p['slug'])}): {p['description']}"
-    guides = [p for p in indexable if p["type"] == "article" and not p["slug"].startswith("blog/")]
+    guides = [p for p in indexable if p["type"] == "article" and not p["slug"].startswith("blog/") and p.get("group") != "tool"]
+    tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
     info = [by_slug[s] for s in ("about.html", "contact.html", "privacy.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "")
@@ -244,6 +245,7 @@ def main():
         llms.append(line(p))
         if p["slug"] == "breeds.html" and breeds_anchor:
             llms.append("  - Breed sections: " + breeds_anchor)
+    llms += ["", "## Tools"] + [line(p) + " (searchable table with a stable #anchor per item)" for p in tools]
     llms += ["", "## Blog"] + [line(p) for p in posts] + ["", "## Optional"] + [line(p) for p in info]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
     open(os.path.join(ROOT, f"{INDEXNOW_KEY}.txt"), "w").write(INDEXNOW_KEY)

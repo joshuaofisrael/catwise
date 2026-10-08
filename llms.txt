@@ -16,6 +16,9 @@ The content is general education, not veterinary advice.
 - [Cat myths vs facts](https://joshuaofisrael.github.io/catwise/myths.html): Ten common cat myths checked against veterinary sources: milk, purring, one litter before spaying, pregnancy and cats, indoor vaccines, lilies, vegan diets and more.
 - [Cat glossary](https://joshuaofisrael.github.io/catwise/glossary.html): Plain English definitions of cat terms vets and breeders use: AAFCO statement, body condition score, CKD, FeLV, HCM, obligate carnivore, PKD, queen, taurine and more.
 
+## Tools
+- [Toxic to cats checker](https://joshuaofisrael.github.io/catwise/toxic-to-cats.html): Search 36 common plants, foods, medicines and household products to see if they are toxic to cats, how dangerous they are and what to do, with ASPCA and vet school sources. (searchable table with a stable #anchor per item)
+
 ## Blog
 - [Are lilies poisonous to cats?](https://joshuaofisrael.github.io/catwise/blog/are-lilies-poisonous-to-cats.html): Yes. True lilies and daylilies can cause fatal kidney failure in cats from a bite, pollen or vase water. Which lilies are dangerous, the signs, and what to do right away.
 - [Cat straining to pee: emergency signs](https://joshuaofisrael.github.io/catwise/blog/cat-straining-to-pee.html): A cat, especially a male, straining in the litter box with little or no urine may have a urethral blockage, which can be fatal within 24 to 48 hours. Signs and what to do.

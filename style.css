@@ -19,3 +19,4 @@ main{max-width:1000px;margin:auto;padding:1.5rem 1.2rem}h1{color:#c9adff;line-he
 form label{display:block;margin:.8rem 0 .2rem;font-weight:600}input,textarea{width:100%;font:inherit;padding:.6rem;border-radius:8px;border:1px solid #3a2d55;background:#17121f;color:#ece6f5}textarea{min-height:160px}
 footer{text-align:center;padding:2rem 1rem;color:#a99cc0;font-size:.88rem;border-top:1px solid #2c2145}footer h2{font-size:1.1rem;margin:.2rem 0;color:#d8c4ff}footer a{color:#cdb4ff}.llc{color:#ece6f5;font-weight:600}
 @media(max-width:760px){.menu{display:block}nav{display:none;width:100%;flex-direction:column}body.open nav{display:flex}.hero h1{font-size:1.8rem}.related ul{columns:1}}
+td.v{color:#f3a3a3;font-weight:700}td.m{color:#f6c177;font-weight:700}td.h{color:#a8f0b5;font-weight:700}

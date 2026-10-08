@@ -29,6 +29,6 @@ The content is general education, not veterinary advice.
 ## Optional
 - [About](https://meowwise.com/about.html): MeowWise is a brand of Joshua Israel Ventures LLC: an independent cat information site. How our guides are researched, sourced, checked and updated.
 - [Contact](https://meowwise.com/contact.html): Contact the MeowWise team by email or with our contact form: corrections, questions about our cat guides and suggestions for new topics.
-- [Terms of Use](https://meowwise.com/terms.html): The terms for using MeowWise, a brand of Joshua Israel Ventures LLC: general information only, not veterinary advice, warranty disclaimer, liability limits and Michigan law.
+- [Terms of Use](https://meowwise.com/terms.html): The terms for using MeowWise, a brand of Joshua Israel Ventures LLC: general information only, not veterinary advice, warranty disclaimer, liability limits and Florida law.
 - [Privacy](https://meowwise.com/privacy.html): How Joshua Israel Ventures LLC handles information on MeowWise: contact form messages via FormSubmit, GitHub Pages server logs, Google Fonts, and no analytics or ad cookies.
 - [Disclaimer](https://meowwise.com/disclaimer.html): MeowWise disclaimer: general cat information only, no veterinarian client relationship, accuracy limits, and our advertising and affiliate disclosure.

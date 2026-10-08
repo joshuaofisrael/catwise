@@ -1,8 +1,8 @@
-# CatWise
+# MeowWise
 
 Original, sourced cat care information site operated by Joshua Israel Ventures LLC.
 
-- Live: https://joshuaofisrael.github.io/catwise/
+- Live: https://joshuaofisrael.github.io/meowwise/
 - Stack: HTML fragments in `_src/` rendered by `python3 _build.py` into static HTML at the repo root (commit the output). One `style.css`, no frameworks, no tracking cookies.
 - Hosting: GitHub Pages, deploy from branch `main`, folder `/`.
 - Base URL lives in one place: `SITE_URL` in `_build.py` (also `BASE` in `indexnow.sh`).

@@ -102,7 +102,7 @@ for g in GROUPS:
                     f'<td>{src_html(src)}<br><span class="sci">Reviewed {REVIEWED}</span></td></tr>')
 n = len(ENTRIES)
 jump = " · ".join(f'<a href="#{re.sub("[^a-z]+","-",g.lower()).strip("-")}">{g}</a>' for g in GROUPS)
-page = f'''title: Is This Plant or Household Item Toxic to Cats? Lily Safe Checker | CatWise
+page = f'''title: Is This Plant or Household Item Toxic to Cats? Lily Safe Checker | MeowWise
 description: Check {n} cut flowers, houseplants, garden plants, essential oils and household products for toxicity to cats. Lilies first: deadly even as pollen or vase water.
 h1: Is this plant or household item toxic to cats?
 label: Toxic plant and household checker

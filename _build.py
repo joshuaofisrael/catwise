@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CatWise static site builder.
+"""MeowWise static site builder.
 Content lives in _src/ as HTML fragments with a small front matter header.
 Run: python3 _build.py   (writes the static site into the repo root; commit the output)
 
@@ -8,8 +8,8 @@ then re ping IndexNow (./indexnow.sh) on the new host.
 """
 import html, json, os, re, glob, datetime
 
-SITE_URL = "https://joshuaofisrael.github.io/catwise/"   # <- the ONE place the base URL lives
-SITE_NAME = "CatWise"
+SITE_URL = "https://joshuaofisrael.github.io/meowwise/"   # <- the ONE place the base URL lives
+SITE_NAME = "MeowWise"
 LEGAL = "Joshua Israel Ventures LLC"
 EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
@@ -25,7 +25,7 @@ NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"),
        ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Plants"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
        ("blog/", "Blog"), ("contact.html", "Contact")]
 
-LOGO = ('<svg role="img" width="34" height="34" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">CatWise logo</title>'
+LOGO = ('<svg role="img" width="34" height="34" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">MeowWise logo</title>'
         '<path d="M12 54V22L8 6l16 10h16l16-10-4 16v32z" fill="#b794f6"/>'
         '<circle cx="24" cy="32" r="4" fill="#17121f"/><circle cx="40" cy="32" r="4" fill="#17121f"/>'
         '<path d="M29 41h6l-3 3z" fill="#17121f"/><path d="M14 42l10 1M14 47l10-1M50 42l-10 1M50 47l-10-1" stroke="#17121f" stroke-width="1.6"/></svg>')
@@ -156,7 +156,7 @@ def render(p, pages_by_slug, blog_posts):
                 f'<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">'
                 f'<meta property="og:url" content="{url}"><meta property="og:image" content="{SITE_URL}og.png">'
                 f'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
-                f'<meta property="og:image:alt" content="CatWise: plain language cat care guide">'
+                f'<meta property="og:image:alt" content="MeowWise: plain language cat care guide">'
                 f'<meta name="twitter:card" content="summary_large_image">')
     head += [ld(x) for x in lds]
     head.append("</head><body>")

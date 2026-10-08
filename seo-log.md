@@ -1,4 +1,4 @@
-# CatWise SEO log
+# MeowWise SEO log
 
 ## 2026-10-08: v1 launch
 Built: home, 9 guides (breeds, care, health, behavior, nutrition, kittens, senior cats, myths, glossary), blog index + 5 answer first posts, About, Contact (mailto + FormSubmit form), Privacy, thanks (noindex), 404 (noindex).

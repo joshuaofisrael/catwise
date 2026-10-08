@@ -20,3 +20,4 @@ form label{display:block;margin:.8rem 0 .2rem;font-weight:600}input,textarea{wid
 footer{text-align:center;padding:2rem 1rem;color:#a99cc0;font-size:.88rem;border-top:1px solid #2c2145}footer h2{font-size:1.1rem;margin:.2rem 0;color:#d8c4ff}footer a{color:#cdb4ff}.llc{color:#ece6f5;font-weight:600}
 @media(max-width:760px){.menu{display:block}nav{display:none;width:100%;flex-direction:column}body.open nav{display:flex}.hero h1{font-size:1.8rem}.related ul{columns:1}}
 td.v{color:#f3a3a3;font-weight:700}td.m{color:#f6c177;font-weight:700}td.h{color:#a8f0b5;font-weight:700}
+tr.grp th{background:#2c2145;color:#ece6f5;font-size:1rem}

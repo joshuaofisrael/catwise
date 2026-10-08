@@ -22,7 +22,7 @@ SRC = os.path.join(ROOT, "_src")
 
 NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"), ("health.html", "Health"),
        ("behavior.html", "Behavior"), ("nutrition.html", "Nutrition"), ("kittens.html", "Kittens"),
-       ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Checker"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
+       ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Plants"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
        ("blog/", "Blog"), ("contact.html", "Contact")]
 
 LOGO = ('<svg role="img" width="34" height="34" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">CatWise logo</title>'

@@ -55,3 +55,4 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 - Internal links: behavior pillar gets a "Do cats know their names?" card, the Saito 2019 source and a related link; slow blink post links to it; /research/ gains Saito 2019 and Takagi 2022 entries and the Saito 2013 entry now lists the post under Used on. Blog index description updated.
 - Article sources (all opened): Saito et al. 2019 Sci Rep 9:5394 (10.1038/s41598-019-40616-4); Takagi et al. 2022 Sci Rep 12:6155 (10.1038/s41598-022-10261-5); Saito and Shinozuka 2013 Anim Cogn 16:685-690 (10.1007/s10071-013-0620-4). Details confirmed on Crossref.
 - Schema: BlogPosting (publisher Joshua Israel Ventures LLC), FAQPage with 4 questions, BreadcrumbList. Sitemap 30 pages plus llms.txt.
+- Live: new post HTTP 200 on meowwise.com. IndexNow (api.indexnow.org): HTTP 200 for 8 URLs (new post, behavior, slow blink, blog index, research, home, sitemap.xml, llms.txt).

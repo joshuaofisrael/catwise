@@ -1,6 +1,6 @@
 # MeowWise
 
-> MeowWise is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. Operated by Joshua Israel Ventures LLC.
+> MeowWise is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. MeowWise is a brand owned and operated by Joshua Israel Ventures LLC.
 
 The content is general education, not veterinary advice.
 
@@ -27,6 +27,8 @@ The content is general education, not veterinary advice.
 - [Why do cats slow blink?](https://meowwise.com/blog/why-do-cats-slow-blink.html): A cat's slow blink is a relaxed, positive signal. A 2020 study found cats slow blink back at people and approach strangers who slow blink. How to slow blink at a cat.
 
 ## Optional
-- [About](https://meowwise.com/about.html): MeowWise is an independent cat information site operated by Joshua Israel Ventures LLC. How our guides are researched, sourced, checked and updated.
+- [About](https://meowwise.com/about.html): MeowWise is a brand of Joshua Israel Ventures LLC: an independent cat information site. How our guides are researched, sourced, checked and updated.
 - [Contact](https://meowwise.com/contact.html): Contact the MeowWise team by email or with our contact form: corrections, questions about our cat guides and suggestions for new topics.
-- [Privacy](https://meowwise.com/privacy.html): How MeowWise handles your information: no accounts, no advertising cookies, contact form messages delivered by FormSubmit, and hosting on GitHub Pages.
+- [Terms of Use](https://meowwise.com/terms.html): The terms for using MeowWise, a brand of Joshua Israel Ventures LLC: general information only, not veterinary advice, warranty disclaimer, liability limits and Michigan law.
+- [Privacy](https://meowwise.com/privacy.html): How Joshua Israel Ventures LLC handles information on MeowWise: contact form messages via FormSubmit, GitHub Pages server logs, Google Fonts, and no analytics or ad cookies.
+- [Disclaimer](https://meowwise.com/disclaimer.html): MeowWise disclaimer: general cat information only, no veterinarian client relationship, accuracy limits, and our advertising and affiliate disclosure.

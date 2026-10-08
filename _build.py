@@ -25,10 +25,23 @@ NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"),
        ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Plants"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
        ("blog/", "Blog"), ("contact.html", "Contact")]
 
-LOGO = ('<svg role="img" width="34" height="34" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">MeowWise logo</title>'
-        '<path d="M12 54V22L8 6l16 10h16l16-10-4 16v32z" fill="#b794f6"/>'
-        '<circle cx="24" cy="32" r="4" fill="#17121f"/><circle cx="40" cy="32" r="4" fill="#17121f"/>'
-        '<path d="M29 41h6l-3 3z" fill="#17121f"/><path d="M14 42l10 1M14 47l10-1M50 42l-10 1M50 47l-10-1" stroke="#17121f" stroke-width="1.6"/></svg>')
+LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">MeowWise logo</title>'
+        '<path d="M12 54V22L8 6l16 10h16l16-10-4 16v32z" fill="#8e5cc8"/><path d="M13 19l-1-8 7 5zM51 19l1-8-7 5z" fill="#f8cfe2"/>'
+        '<circle cx="24" cy="32" r="4" fill="#2b2236"/><circle cx="40" cy="32" r="4" fill="#2b2236"/>'
+        '<path d="M29 40h6l-3 3.5z" fill="#f48fb1"/><path d="M14 42l10 1M14 47l10-1M50 42l-10 1M50 47l-10-1" stroke="#2b2236" stroke-width="1.6" stroke-linecap="round"/></svg>')
+
+# Hand authored doodles (tiny inline SVG, decorative only)
+PAW_DEF = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="mw-paw" viewBox="0 0 24 24"><g fill="currentColor">'
+           '<ellipse cx="12" cy="16.5" rx="5.2" ry="4.2"/><circle cx="5.6" cy="10.4" r="2.2"/><circle cx="9.6" cy="6.4" r="2.2"/>'
+           '<circle cx="14.4" cy="6.4" r="2.2"/><circle cx="18.4" cy="10.4" r="2.2"/></g></symbol></svg>')
+PAW = '<svg class="paw" width="18" height="18" aria-hidden="true" focusable="false"><use href="#mw-paw"/></svg>'
+DIVIDER = '<div class="doodle" aria-hidden="true">' + PAW * 5 + '</div>'
+YARN = ('<svg class="yarn" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true" focusable="false">'
+        '<circle cx="18" cy="18" r="12" fill="#f8cfe2" stroke="#b5487e" stroke-width="1.5"/>'
+        '<path d="M8 14c6 2 14 2 20-4M7 20c8 2 16 0 22-8M10 26c6-1 12-5 16-12M22 7c-3 6-3 15 1 22" fill="none" stroke="#b5487e" stroke-width="1.3"/>'
+        '<path d="M28 26c4 3 6 6 3 9s-6 0-8 3" fill="none" stroke="#b5487e" stroke-width="1.3" stroke-linecap="round"/></svg>')
+FONT_LINKS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&amp;display=swap">')
 
 
 def parse(path):
@@ -87,8 +100,10 @@ def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + "</script>"
 
 
-ORG = {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL, "legalName": LEGAL, "email": EMAIL,
-       "logo": SITE_URL + "favicon.svg"}
+BRAND = {"@type": "Brand", "name": SITE_NAME, "url": SITE_URL, "logo": SITE_URL + "favicon.svg"}
+# MeowWise is only a brand (not a DBA); the legal publisher is always the LLC.
+ORG = {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL, "legalName": LEGAL, "url": SITE_URL, "email": EMAIL,
+       "brand": BRAND}
 
 
 def human_date(d):
@@ -114,7 +129,7 @@ def render(p, pages_by_slug, blog_posts):
     lds = []
     if typ == "home":
         lds.append({"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": SITE_URL,
-                    "publisher": {"@type": "Organization", "name": SITE_NAME, "legalName": LEGAL}})
+                    "publisher": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL}})
         lds.append(dict({"@context": "https://schema.org"}, **ORG))
     crumbs = []
     if typ != "home" and not noindex:
@@ -128,7 +143,7 @@ def render(p, pages_by_slug, blog_posts):
         lds.append({"@context": "https://schema.org", "@type": "BlogPosting" if typ == "blog" else "Article",
                     "headline": p.get("h1", title)[:110], "description": desc,
                     "datePublished": p["published"], "dateModified": p["updated"],
-                    "image": SITE_URL + "og.png", "author": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL},
+                    "image": SITE_URL + "og.png", "author": {"@type": "Organization", "@id": SITE_URL + "#org", "name": LEGAL, "url": SITE_URL},
                     "publisher": dict({"@context": "https://schema.org"}, **ORG), "mainEntityOfPage": url,
                     "citation": [u for _, u in p["source"]] or None})
         if lds[-1]["citation"] is None:
@@ -150,6 +165,7 @@ def render(p, pages_by_slug, blog_posts):
         head.append(f'<link rel="canonical" href="{url}">')
     css = SITE_URL + "style.css" if slug == "404.html" else prefix + "style.css"
     fav = SITE_URL + "favicon.svg" if slug == "404.html" else prefix + "favicon.svg"
+    head.append(FONT_LINKS)
     head.append(f'<link rel="stylesheet" href="{css}"><link rel="icon" href="{fav}" type="image/svg+xml">')
     ogt = "article" if typ in ("article", "blog") else "website"
     head.append(f'<meta property="og:type" content="{ogt}"><meta property="og:site_name" content="{SITE_NAME}">'
@@ -167,7 +183,7 @@ def render(p, pages_by_slug, blog_posts):
     navhtml = "".join(
         f'<a href="{link(t)}"' + (' aria-current="page"' if (t == slug or (t == "blog/" and slug.startswith("blog/"))) else "") + f">{n}</a>"
         for t, n in NAV)
-    header = (f'<a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{link("index.html")}">{LOGO}<span>{SITE_NAME}</span></a>'
+    header = (PAW_DEF + f'<a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{link("index.html")}">{LOGO}<span>{SITE_NAME}</span>{PAW}</a>'
               '<button class="menu" aria-label="Menu" onclick="document.body.classList.toggle(\'open\')">☰</button>'
               f'<nav aria-label="Main">{navhtml}</nav></header>')
 
@@ -191,12 +207,11 @@ def render(p, pages_by_slug, blog_posts):
         main.append('<p class="note">General education, not veterinary advice. If you are worried about your cat, contact your veterinarian; in an emergency, go to the nearest emergency vet.</p>')
     main.append("</main>")
 
-    footer = (f'<footer><section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
+    footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or use our <a href="{link("contact.html")}">contact form</a>.</p></section>'
               f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original. Not a substitute for veterinary care.</p>'
-              f'<p class="llc">Operated by {LEGAL}</p>'
-              f'<p><a href="{link("about.html")}">About</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("blog/")}">Blog</a></p>'
-              f'<p>© 2026 Joshua Israel</p></footer>')
+              f'<p class="llc">© 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
@@ -236,10 +251,10 @@ def main():
     guides = [p for p in indexable if p["type"] == "article" and not p["slug"].startswith("blog/") and p.get("group") != "tool"]
     tools = [p for p in indexable if p.get("group") == "tool"]
     posts = [p for p in indexable if p["type"] == "blog"]
-    info = [by_slug[s] for s in ("about.html", "contact.html", "privacy.html") if s in by_slug]
+    info = [by_slug[s] for s in ("about.html", "contact.html", "terms.html", "privacy.html", "disclaimer.html") if s in by_slug]
     breeds_anchor = by_slug.get("breeds.html", {}).get("anchors", "").replace("{{SITE}}", SITE_URL)
     llms = [f"# {SITE_NAME}", "",
-            f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. Operated by {LEGAL}.",
+            f"> {SITE_NAME} is a free, original, plain language guide to cats for owners and future owners: cat breeds and their inherited health risks, everyday care, health warning signs and emergencies, behavior and body language, nutrition, kittens and senior cats. Every guide answers the main question first and cites veterinary sources such as the Cornell Feline Health Center, AAFP, AAHA, International Cat Care and UC Davis. {SITE_NAME} is a brand owned and operated by {LEGAL}.",
             "", "The content is general education, not veterinary advice.", "", "## Guides"]
     for p in guides:
         llms.append(line(p))

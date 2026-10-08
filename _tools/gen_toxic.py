@@ -81,7 +81,7 @@ ENTRIES = [
  ("milk", "Milk and dairy", "", "Foods", M, "Many cats are lactose intolerant: diarrhea and stomach upset.", ["CORF", "ASPF"]),
 ]
 GROUPS = ["Cut flowers", "Houseplants", "Garden plants", "Essential oils and fragrance", "Household and medicines", "Foods"]
-CLS = {E: "v", T: "v", M: "m", N: "h"}
+CLS = {E: "v e", T: "v", M: "m", N: "h"}
 assert len({e[0] for e in ENTRIES}) == len(ENTRIES)
 
 def src_html(keys):

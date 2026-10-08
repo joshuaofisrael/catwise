@@ -11,3 +11,9 @@ Pending: Cloudflare beacon token (API token lacks Web Analytics permission), GSC
 | Date | Window | Impressions | Clicks | CTR | Avg pos | Indexed pages | Top100/20/10/3 queries | Growing pages | Declining pages | Conversions |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 2026-10-08 | 7d | n/a (no GSC yet) | n/a | n/a | n/a | 20 URLs in sitemap | n/a | n/a | n/a | n/a |
+
+## 2026-10-08 launch checks
+- Live: all 20 sitemap URLs plus robots.txt, sitemap.xml, llms.txt, key file, og.png return 200; unknown path returns 404 page.
+- IndexNow (api.indexnow.org): HTTP 202 for 21 URLs (20 pages plus llms.txt).
+- Crawler UA spot check (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot, Applebot, DuckAssistBot, Amazonbot): 200.
+- Open: Cloudflare beacon (token lacks RUM permission), GSC verification token, FormSubmit activation.

@@ -1,0 +1,39 @@
+title: Whisker Pairs: Cat Memory Match Game | MeowWise
+description: Whisker Pairs is a free cat memory match game with original drawings. Each pair you find unlocks a true, sourced cat fact. No sign up, no data collected.
+h1: Whisker Pairs: cat memory match
+label: Whisker Pairs
+type: page
+related: kittens.html, toxic-to-cats.html, games/index.html
+source: Saito A. et al. (2019) Domestic cats discriminate their names from other words. Scientific Reports 9:5394 | https://doi.org/10.1038/s41598-019-40616-4
+source: Humphrey T. et al. (2020) The role of cat eye narrowing movements in cat to human communication. Scientific Reports 10:16503 | https://www.nature.com/articles/s41598-020-73426-0
+source: Cats Protection: Kitten socialisation | https://www.cats.org.uk/help-and-advice/pregnancy-and-kitten-care/kitten-socialisation
+source: Carney H.C. et al. (2014) AAFP and ISFM Guidelines for Diagnosing and Solving House Soiling Behavior in Cats | https://doi.org/10.1177/1098612X14539092
+source: Quimby J. et al. (2021) 2021 AAHA/AAFP Feline Life Stage Guidelines. J Feline Med Surg 23:211 to 233 | https://doi.org/10.1177/1098612X21993657
+source: Cornell Feline Health Center: Lily toxicity | https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/lily-toxicity-cats
+---
+<p class="lead">Flip two cards at a time and find the matching cats. Every pair unlocks a true cat fact. Use a mouse, touch, or Tab and Enter on a keyboard. Your best number of moves is saved only in this browser.</p>
+<section class="card game"><p class="sci" id="wp-stat" aria-live="polite"></p><div id="wp-grid" class="wp"></div><p id="wp-fact" aria-live="polite"></p><p><button class="btn alt" id="wp-new" type="button">New game</button></p></section>
+<style>.wp{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:520px;margin:auto}.wp button{aspect-ratio:1;border-radius:18px;border:3px solid #00c8e8;background:linear-gradient(135deg,#8a0aa6,#d1007f);cursor:pointer;padding:6%;color:#fff;font:600 1.6rem Fredoka,system-ui}.wp button:focus-visible{outline:3px solid #b6ff00;outline-offset:2px}.wp button.up,.wp button.done{background:#fff}.wp button.done{border-color:#7ab800;box-shadow:0 0 12px #b6ff00}.wp svg{width:100%;height:100%}</style>
+<script>
+(function(){
+var C=['#ff8a3d','#7a7a8c','#2b2236','#f5d6a8','#c47a3a','#e9e9f2'];
+var F=['Cats can tell their own name apart from other words, even when a stranger says it (Saito et al. 2019, Scientific Reports).',
+'Slow blink at a cat: in a 2020 study, cats slow blinked back and were more likely to approach people who did (Humphrey et al., Scientific Reports).',
+'The key socialisation window for kittens is about 2 to 7 weeks old, when gentle handling helps them grow into confident cats (Cats Protection).',
+'Experts advise one litter box per cat plus one extra, placed in different spots (AAFP and ISFM guidelines, Carney et al. 2014).',
+'True lilies are very dangerous to cats: even a little pollen or vase water can cause kidney failure. Call a vet straight away (Cornell Feline Health Center).',
+'Every cat, even an indoor one, should see a vet for a check up at least once a year (2021 AAHA and AAFP Feline Life Stage Guidelines, Quimby et al.).'];
+var N=['orange cat','grey cat','black cat','cream cat','brown tabby','white cat'];
+function face(k){var c=C[k],d=k==2?'#ffe14d':'#1d1430',e=k==2?'#ffe14d':'#1d1430';var s=k==4?'<path d="M40 30 l4 12 M50 28 v12 M60 30 l-4 12" stroke="#7a4a1e" stroke-width="3"/>':'';
+return '<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M20 45 L26 12 L44 32 Z M56 32 L74 12 L80 45 Z" fill="'+c+'" stroke="#1d1430" stroke-width="2"/><circle cx="50" cy="56" r="32" fill="'+c+'" stroke="#1d1430" stroke-width="2"/>'+s+'<circle cx="38" cy="52" r="5" fill="'+e+'"/><circle cx="62" cy="52" r="5" fill="'+e+'"/><path d="M46 64 h8 l-4 5z" fill="#ff2bd6"/><path d="M30 66 l-20 -3 M30 72 l-20 3 M70 66 l20 -3 M70 72 l20 3" stroke="'+(k==2?'#fff':'#1d1430')+'" stroke-width="1.8"/></svg>';}
+var g=document.getElementById('wp-grid'),st=document.getElementById('wp-stat'),fa=document.getElementById('wp-fact'),open=[],moves=0,found=0,lock=false;
+function start(){var d=[0,1,2,3,4,5,0,1,2,3,4,5].sort(function(){return Math.random()-.5});g.innerHTML='';open=[];moves=0;found=0;fa.textContent='';
+d.forEach(function(k,i){var b=document.createElement('button');b.type='button';b.dataset.k=k;b.setAttribute('aria-label','Card '+(i+1)+', face down');b.textContent='?';b.onclick=function(){flip(b)};g.appendChild(b)});stat();}
+function stat(){var best=localStorage.getItem('mw-wp-best');st.textContent='Moves: '+moves+' · Pairs: '+found+' of 6'+(best?' · Best: '+best+' moves':'');}
+function flip(b){if(lock||b.classList.contains('up')||b.classList.contains('done'))return;b.classList.add('up');b.innerHTML=face(+b.dataset.k);b.setAttribute('aria-label',N[b.dataset.k]);open.push(b);
+if(open.length==2){moves++;var a=open[0],c=open[1];if(a.dataset.k==c.dataset.k){a.className=c.className='done';found++;fa.innerHTML='<b>Fact unlocked:</b> '+F[a.dataset.k];open=[];if(found==6){var best=localStorage.getItem('mw-wp-best');if(!best||moves<+best){try{localStorage.setItem('mw-wp-best',moves)}catch(e){}}fa.innerHTML+='<br><b>You found every pair in '+moves+' moves!</b>';}}
+else{lock=true;setTimeout(function(){[a,c].forEach(function(x){x.classList.remove('up');x.textContent='?';x.setAttribute('aria-label','Face down card')});open=[];lock=false},matchMedia('(prefers-reduced-motion: reduce)').matches?1400:900)}stat();}}
+document.getElementById('wp-new').onclick=start;start();
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Whisker Pairs","url":"https://meowwise.com/games/whisker-pairs/","description":"A free cat memory match game with original drawings and sourced cat facts.","genre":"Memory match","gamePlatform":"Web browser","applicationCategory":"Game","isAccessibleForFree":true,"inLanguage":"en","publisher":{"@type":"Organization","name":"Joshua Israel Ventures LLC"},"copyrightHolder":{"@type":"Organization","name":"Joshua Israel Ventures LLC"},"copyrightYear":2026}</script>

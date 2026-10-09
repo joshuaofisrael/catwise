@@ -15,7 +15,7 @@ EMAIL = "joshuaofisrael@gmail.com"
 INDEXNOW_KEY = "fbe2e797c1db901fb91646b40e01856f"
 CF_BEACON_TOKEN = ""      # Cloudflare Web Analytics token; empty = beacon omitted
 GSC_TOKEN = ""            # Google Search Console verification token; empty = tag omitted
-TODAY = "2026-10-08"
+TODAY = "2026-10-09"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "_src")
@@ -23,11 +23,11 @@ SRC = os.path.join(ROOT, "_src")
 NAV = [("index.html", "Home"), ("breeds.html", "Breeds"), ("care.html", "Care"), ("health.html", "Health"),
        ("behavior.html", "Behavior"), ("nutrition.html", "Nutrition"), ("kittens.html", "Kittens"),
        ("senior-cats.html", "Senior Cats"), ("toxic-to-cats.html", "Toxic Plants"), ("myths.html", "Myths vs Facts"), ("glossary.html", "Glossary"),
-       ("blog/", "Blog"), ("teachers/", "Teachers"), ("contact.html", "Contact")]
+       ("blog/", "Blog"), ("games/", "Games"), ("teachers/", "Teachers"), ("contact.html", "Contact")]
 
 # Pages that get the "Cite this page" box and a visible last reviewed date
 CITABLE = ("article", "blog", "teacher", "research")
-SECTIONS = {"blog/": ("Blog", "blog/index.html"), "teachers/": ("For teachers", "teachers/index.html")}
+SECTIONS = {"games/": ("Games", "games/index.html"), "blog/": ("Blog", "blog/index.html"), "teachers/": ("For teachers", "teachers/index.html")}
 
 LOGO = ('<svg role="img" width="36" height="36" viewBox="0 0 64 64" aria-labelledby="logo-t"><title id="logo-t">MeowWise logo</title>'
         '<path d="M12 54V22L8 6l16 10h16l16-10-4 16v32z" fill="#8e5cc8"/><path d="M13 19l-1-8 7 5zM51 19l1-8-7 5z" fill="#f8cfe2"/>'
@@ -253,7 +253,7 @@ def render(p, pages_by_slug, blog_posts):
         return SITE_URL + target if slug == "404.html" else "/" + target
 
     navhtml = "".join(
-        f'<a href="{link(t)}"' + (' aria-current="page"' if (t == slug or (t == "blog/" and slug.startswith("blog/"))) else "") + f">{n}</a>"
+        f'<a href="{link(t)}"' + (' aria-current="page"' if (t == slug or (t == "blog/" and slug.startswith("blog/")) or (t == "games/" and slug.startswith("games/"))) else "") + f">{n}</a>"
         for t, n in NAV)
     header = (PAW_DEF + f'<a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{link("index.html")}">{LOGO}<span>{SITE_NAME}</span>{PAW}</a>'
               '<button class="menu" aria-label="Menu" onclick="document.body.classList.toggle(\'open\')">☰</button>'
@@ -287,9 +287,9 @@ def render(p, pages_by_slug, blog_posts):
 
     footer = (DIVIDER + f'<footer>{YARN}<section class="contact-us" id="contact-us" aria-labelledby="contact-us-h"><h2 id="contact-us-h">Contact us</h2>'
               f'<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> or use our <a href="{link("contact.html")}">contact form</a>.</p></section>'
-              f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original. Not a substitute for veterinary care.</p>'
+              f'<p>{SITE_NAME}: original educational content about cats. All text and illustrations are original; photos are CC0 and credited. Not a substitute for veterinary care.</p>'
               f'<p class="llc">© 2026 {LEGAL}. All rights reserved. {SITE_NAME} is owned and operated by {LEGAL}.</p>'
-              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a></p></footer>')
+              f'<p class="legal"><a href="{link("terms.html")}">Terms</a> · <a href="{link("privacy.html")}">Privacy</a> · <a href="{link("disclaimer.html")}">Disclaimer</a> · <a href="{link("contact.html")}">Contact</a> · <a href="{link("about.html")}">About</a> · <a href="{link("blog/")}">Blog</a> · <a href="{link("teachers/")}">For teachers</a> · <a href="{link("research/")}">Research</a> · <a href="{link("games/")}">Games</a> · <a href="{link("photo-credits.html")}">Photo credits</a></p></footer>')
     beacon = ""
     if CF_BEACON_TOKEN:
         beacon = ("<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' "

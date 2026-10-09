@@ -28,4 +28,24 @@ form label{display:block;margin:.8rem 0 .2rem;font-weight:600}input,textarea{wid
 footer{text-align:center;padding:1.6rem 1rem 2rem;color:var(--muted);font-size:.95rem;background:var(--lav);border-top:3px dotted var(--pink)}footer h2{font-size:1.25rem;margin:.2rem 0;color:var(--plum)}footer a{color:var(--link)}.llc{color:var(--ink);font-weight:700}.legal a{font-weight:600}.yarn{display:block;margin:0 auto .2rem}
 @media(max-width:760px){.menu{display:block}nav{display:none;width:100%;flex-direction:column}body.open nav{display:flex}h1{font-size:1.8rem}.hero h1{font-size:1.9rem}.related ul{columns:1}}
 .cite p{margin:.5rem 0;overflow-wrap:anywhere}.lines{display:block;border-bottom:1px solid #999;height:1.9rem;margin:.2rem 0}.answer-key{margin-top:1.5rem}.ngss{font-size:.9rem}.paper{margin:.6rem 0}
-@media print{body{background:#fff!important;color:#000!important;font-size:12pt}header,nav,.menu,.skip,.doodle,.yarn,.related,.noprint,.contact-us,.legal,.crumbs,.note{display:none!important}main{max-width:none;padding:0}.card,.hero,.tile{background:#fff!important;border:1px solid #000!important;box-shadow:none!important;color:#000!important}h1,h2,h3,a,.sci,.meta,.lead,footer,dt,dd{color:#000!important}a{text-decoration:none}footer{background:#fff!important;border:0!important;padding:.5rem 0}.answer-key{break-before:page}.card,li,tr{break-inside:avoid}}
+/* Neon restyle 2026-10-09: hot pink, electric lime, cyan, violet. Body text stays dark ink on white cards (AA). */
+:root{--bg:#fdf6ff;--lav:#1a0b2e;--card:#fff;--line:#ff4fd8;--ink:#1d1430;--muted:#4a3d5e;--plum:#8a0aa6;--link:#7b0fa0;--mint:#c6ff3d;--mintd:#2c4a00;--pink:#ff2bd6;--rose:#d1007f;--cyan:#00e5ff;--lime:#b6ff00}
+body{background:radial-gradient(circle at 8% 12%,rgba(0,229,255,.18) 0 180px,transparent 181px),radial-gradient(circle at 94% 30%,rgba(255,43,214,.16) 0 220px,transparent 221px),radial-gradient(circle at 20% 85%,rgba(182,255,0,.18) 0 200px,transparent 201px),var(--bg);background-attachment:fixed}
+header{background:linear-gradient(90deg,#1a0b2e,#2d0b4e 60%,#120626);border-bottom:3px solid var(--pink);box-shadow:0 0 18px rgba(255,43,214,.55)}
+.brand{color:#fff;text-shadow:0 0 8px var(--pink),0 0 18px rgba(255,43,214,.6)}.brand .paw{color:var(--lime)}
+nav a{color:#f3e9ff}nav a:hover{background:rgba(0,229,255,.18);color:#fff}nav a[aria-current]{background:var(--lime);color:#14200a;box-shadow:0 0 12px var(--lime)}
+.menu{background:#2d0b4e;border-color:var(--pink);color:#fff}
+h1{color:var(--plum);text-shadow:0 0 14px rgba(255,43,214,.35)}h2{color:var(--plum)}h3{color:#4b0a6e}
+.hero{background:linear-gradient(135deg,#ff2bd6 0%,#8a2be2 45%,#00c8e8 100%);color:#fff;box-shadow:0 0 0 3px #fff,0 0 28px rgba(255,43,214,.55),0 0 48px rgba(0,229,255,.35)}
+.hero h1{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 22px #ff2bd6}.hero .lead,.hero p{color:#fff;text-shadow:0 1px 2px rgba(30,0,40,.65)}
+.hero h1::after{filter:hue-rotate(40deg) brightness(1.4)}
+.btn{background:linear-gradient(90deg,#d1007f,#8a0aa6);box-shadow:0 0 0 2px #fff,0 0 16px rgba(255,43,214,.8);color:#fff}.btn.alt{background:var(--lime);color:#14200a;box-shadow:0 0 0 2px #fff,0 0 16px rgba(182,255,0,.9)}
+.card{border:2px solid var(--pink);box-shadow:0 0 0 3px rgba(0,229,255,.25),0 0 22px rgba(255,43,214,.25)}
+.tile{background:#fff!important;border:2px solid var(--cyan)!important;box-shadow:0 0 16px rgba(0,229,255,.35)}.tile:hover{box-shadow:0 0 24px rgba(255,43,214,.6);border-color:var(--pink)!important}
+footer{background:#1a0b2e!important;color:#f3e9ff;border-top:3px solid var(--lime)!important;box-shadow:0 0 18px rgba(182,255,0,.4)}footer h2{color:#fff;text-shadow:0 0 8px var(--cyan)}footer a{color:#7ff3ff}.llc{color:#fff}
+.doodle{color:var(--pink)}
+.photo{margin:1rem 0;border-radius:22px;overflow:hidden;background:#fff;border:3px solid #fff;box-shadow:0 0 0 3px var(--pink),0 0 22px rgba(255,43,214,.5)}.photo img{display:block;width:100%;height:auto}.photo figcaption{font-size:.8rem;color:var(--muted);padding:.35rem .7rem}.photo figcaption a{color:var(--link)}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}.photos .photo{margin:0}
+.hero-photo{float:right;width:min(300px,40%);margin:0 0 1rem 1.2rem}@media(max-width:760px){.hero-photo{float:none;width:100%;margin:1rem 0 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.btn:hover{transform:none}}
+@media print{.photo{box-shadow:none!important;border:1px solid #000!important}header,footer{box-shadow:none!important}.hero{color:#000!important}body{background:#fff!important;color:#000!important;font-size:12pt}header,nav,.menu,.skip,.doodle,.yarn,.related,.noprint,.contact-us,.legal,.crumbs,.note{display:none!important}main{max-width:none;padding:0}.card,.hero,.tile{background:#fff!important;border:1px solid #000!important;box-shadow:none!important;color:#000!important}h1,h2,h3,a,.sci,.meta,.lead,footer,dt,dd{color:#000!important}a{text-decoration:none}footer{background:#fff!important;border:0!important;padding:.5rem 0}.answer-key{break-before:page}.card,li,tr{break-inside:avoid}}

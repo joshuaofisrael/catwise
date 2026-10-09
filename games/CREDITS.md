@@ -2,7 +2,7 @@
 
 Games are original works © 2026 Joshua Israel Ventures LLC.
 
-- Tail Talk (/games/tail-talk/): original code and original inline SVG cartoon cat drawn for MeowWise. No outside assets.
+- Read the Cat (/games/read-the-cat/): original code and original inline SVG cartoon cat drawn for MeowWise. No outside assets.
 - Whisker Pairs (/games/whisker-pairs/): original code and original inline SVG cat faces drawn for MeowWise. No outside assets.
 - Font: Fredoka (SIL Open Font License), loaded from Google Fonts site wide.
 - No sounds, sprites, images or third party code are used. No trackers. High scores are stored only in the player's browser (localStorage).

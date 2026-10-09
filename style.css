@@ -36,7 +36,7 @@ header{background:linear-gradient(90deg,#1a0b2e,#2d0b4e 60%,#120626);border-bott
 nav a{color:#f3e9ff}nav a:hover{background:rgba(0,229,255,.18);color:#fff}nav a[aria-current]{background:var(--lime);color:#14200a;box-shadow:0 0 12px var(--lime)}
 .menu{background:#2d0b4e;border-color:var(--pink);color:#fff}
 h1{color:var(--plum);text-shadow:0 0 14px rgba(255,43,214,.35)}h2{color:var(--plum)}h3{color:#4b0a6e}
-.hero{background:linear-gradient(135deg,#ff2bd6 0%,#8a2be2 45%,#00c8e8 100%);color:#fff;box-shadow:0 0 0 3px #fff,0 0 28px rgba(255,43,214,.55),0 0 48px rgba(0,229,255,.35)}
+.hero{background:linear-gradient(135deg,#b0008f 0%,#6a1bb8 50%,#00728c 100%);color:#fff;box-shadow:0 0 0 3px #fff,0 0 28px rgba(255,43,214,.55),0 0 48px rgba(0,229,255,.35)}
 .hero h1{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7),0 0 22px #ff2bd6}.hero .lead,.hero p{color:#fff;text-shadow:0 1px 2px rgba(30,0,40,.65)}
 .hero h1::after{filter:hue-rotate(40deg) brightness(1.4)}
 .btn{background:linear-gradient(90deg,#d1007f,#8a0aa6);box-shadow:0 0 0 2px #fff,0 0 16px rgba(255,43,214,.8);color:#fff}.btn.alt{background:var(--lime);color:#14200a;box-shadow:0 0 0 2px #fff,0 0 16px rgba(182,255,0,.9)}
